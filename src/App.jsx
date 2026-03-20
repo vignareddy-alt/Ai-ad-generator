@@ -51,6 +51,8 @@ function App() {
 
       <h1>🚀 AdVantage Gen</h1>
 
+      
+
       <div className="input-box">
         <input
           type="text"
