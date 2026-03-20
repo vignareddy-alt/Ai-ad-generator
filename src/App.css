@@ -52,6 +52,11 @@ button:hover {
   margin-top: 30px;
 }
 
+.tagline {
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
 img {
   width: 400px;
   border-radius: 12px;
