@@ -1,6 +1,6 @@
 export const generateImage = async (prompt) => {
   const response = await fetch(
-    "https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0",
+    "https://router.huggingface.co/hf-inference/models/stabilityai/sdxl-turbo ",
     {
       method: "POST",
       headers: {
@@ -8,7 +8,10 @@ export const generateImage = async (prompt) => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        inputs: prompt
+        inputs: prompt,
+        parameters: {
+    negative_prompt: "blurry, low quality, distorted, bad anatomy, pixelated",
+  }
       })
     }
   );
