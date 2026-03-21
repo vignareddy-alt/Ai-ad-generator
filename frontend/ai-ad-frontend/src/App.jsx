@@ -5,12 +5,14 @@ function App() {
   const [prompt, setPrompt] = useState("");
   const [image, setImage] = useState(null);
   const [enhancedPrompt, setEnhancedPrompt] = useState("");
+  const [copy, setCopy] = useState("");
   const [loading, setLoading] = useState(false);
 
   const generateImage = async () => {
-    if (!prompt) return alert("Enter a prompt");
+    if (!prompt) return alert("Please enter a prompt");
 
     setLoading(true);
+    setImage(null);
 
     try {
       const response = await fetch("http://localhost:5000/api/image/generate", {
@@ -21,24 +23,11 @@ function App() {
         body: JSON.stringify({ prompt })
       });
 
-      const contentType = response.headers.get("content-type");
+      const data = await response.json();
 
-      // ✅ Case 1: Backend returns JSON (base64)
-      if (contentType && contentType.includes("application/json")) {
-        const data = await response.json();
-
-        setEnhancedPrompt(data.enhancedPrompt || "");
-        setImage(`data:image/png;base64,${data.image}`);
-      }
-
-      // ✅ Case 2: Backend returns image (blob)
-      else {
-        const blob = await response.blob();
-        const imageUrl = URL.createObjectURL(blob);
-
-        setImage(imageUrl);
-        setEnhancedPrompt("Generated from AI");
-      }
+      setEnhancedPrompt(data.enhancedPrompt);
+      setImage(`data:image/png;base64,${data.image}`);
+      setCopy(data.copy);
 
     } catch (err) {
       console.error(err);
@@ -50,7 +39,7 @@ function App() {
 
   const copyPrompt = () => {
     navigator.clipboard.writeText(enhancedPrompt);
-    alert("Copied!");
+    alert("Prompt copied!");
   };
 
   const downloadImage = () => {
@@ -63,8 +52,14 @@ function App() {
   return (
     <div className="container">
 
+      {/* 🔥 TITLE */}
       <h1>🚀 AdVantage Gen</h1>
 
+      <p className="tagline">
+        AI-powered Ad Creative Generator using Gemini & Stable Diffusion
+      </p>
+
+      {/* 🔥 INPUT */}
       <div className="input-box">
         <input
           type="text"
@@ -77,21 +72,43 @@ function App() {
         </button>
       </div>
 
+      {/* 🔥 FEATURES */}
+      <div className="features">
+        <h3>✨ Features</h3>
+        <ul>
+          <li>AI Prompt Enhancement (Gemini)</li>
+          <li>Image Generation (Stable Diffusion)</li>
+          <li>Download Generated Ads</li>
+          <li>Copy AI Prompt</li>
+        </ul>
+      </div>
+
+      {/* 🔥 LOADING */}
       {loading && <p className="loading">Generating AI content...</p>}
 
+      {/* 🔥 RESULT */}
       {image && (
         <div className="result">
 
+          {/* IMAGE */}
           <img src={image} alt="Generated" />
 
+          {/* DOWNLOAD */}
           <div className="actions">
             <button onClick={downloadImage}>⬇ Download</button>
           </div>
 
+          {/* ENHANCED PROMPT */}
           <div className="prompt-box">
             <h3>✨ Enhanced Prompt</h3>
             <p>{enhancedPrompt}</p>
             <button onClick={copyPrompt}>📋 Copy</button>
+          </div>
+
+          {/* COPYWRITING */}
+          <div className="copy-box">
+            <h3>📢 Caption & Hashtags</h3>
+            <p>{copy}</p>
           </div>
 
         </div>

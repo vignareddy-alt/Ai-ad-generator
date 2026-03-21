@@ -51,6 +51,12 @@ button:hover {
 .result {
   margin-top: 30px;
 }
+.copy-box {
+  background: #1e293b;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
 
 img {
   width: 400px;
