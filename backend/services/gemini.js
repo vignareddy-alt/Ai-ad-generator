@@ -42,7 +42,16 @@ Input: ${userPrompt}
       throw new Error("Invalid Gemini response");
     }
 
-    return text;
+    // return text;
+
+    // 🔥 Clean unwanted text
+     const cleanPrompt = text
+    .replace(/Here's.*?:/i, "")
+    .replace(/\*\*/g, "")
+    .replace(/Prompt:/i, "")
+    .trim();
+
+return cleanPrompt;
 
   } catch (error) {
     console.error("Gemini Error:", error);
