@@ -149,7 +149,7 @@ setCopy(data.copy); // 🔥 IMPORTANT
           {/* COPYWRITING */}
         <div className="copy-box">
           <h3>📢 Caption & Hashtags</h3>
-          <p>{copy}</p>
+          <p style={{ whiteSpace: "pre-line" }}>{copy}</p>
             </div>
 
         </div>
