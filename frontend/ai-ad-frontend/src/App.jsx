@@ -145,11 +145,12 @@ setCopy(data.copy); // 🔥 IMPORTANT
             <button onClick={copyPrompt}>📋 Copy</button>
           </div>
 
+          
           {/* COPYWRITING */}
-          <div className="copy-box">
-            <h3>📢 Caption & Hashtags</h3>
-            <p>{copy}</p>
-          </div>
+        <div className="copy-box">
+          <h3>📢 Caption & Hashtags</h3>
+          <p>{copy}</p>
+            </div>
 
         </div>
       )}
