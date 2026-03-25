@@ -28,25 +28,29 @@ router.post("/generate", async (req, res) => {
     // 🔥 3. Initialize final image
     let finalImage = imageBuffer;
 
-    // 🔥 4. Add logo overlay (optional)
+    // 🔥 4. Add logo and cta overlay (optional)
     try {
-      const logo = fs.readFileSync("logo.png");
+  const logo = fs.readFileSync("logo.png");
+  const cta = fs.readFileSync("cta.png");
 
-      finalImage = await sharp(imageBuffer)
-        .composite([
-          {
-            input: logo,
-            gravity: "southeast", // bottom-right
-          }
-        ])
-        .png()
-        .toBuffer();
+  finalImage = await sharp(imageBuffer)
+    .composite([
+      {
+        input: logo,
+        gravity: "southeast"
+      },
+      {
+        input: cta,
+        gravity: "southwest"
+      }
+    ])
+    .png()
+    .toBuffer();
 
-      console.log("Logo applied successfully");
+} catch (err) {
+  console.log("Overlay skipped");
+}
 
-    } catch (err) {
-      console.log("Logo not found or error applying logo, skipping overlay");
-    }
 
     // 🔥 5. Send response
     res.json({
