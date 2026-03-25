@@ -34,11 +34,11 @@ function App() {
         })
       });
 
-      const data = await response.json();
+     const data = await response.json();
 
-      setEnhancedPrompt(data.enhancedPrompt);
-      setImage(`data:image/png;base64,${data.image}`);
-      setCopy(data.copy);
+setEnhancedPrompt(data.enhancedPrompt);
+setImage(`data:image/png;base64,${data.image}`);
+setCopy(data.copy); // 🔥 IMPORTANT
 
     } catch (err) {
       console.error(err);
