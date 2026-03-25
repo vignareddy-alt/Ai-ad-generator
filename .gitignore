@@ -1,0 +1,47 @@
+# ========================
+# ENV FILES (IMPORTANT)
+# ========================
+.env
+backend/.env
+*.local
+
+# ========================
+# DEPENDENCIES
+# ========================
+node_modules/
+frontend/ai-ad-frontend/node_modules/
+
+# ========================
+# BUILD FILES
+# ========================
+dist/
+frontend/ai-ad-frontend/dist/
+dist-ssr/
+.vite/
+
+# ========================
+# LOG FILES
+# ========================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ========================
+# OS FILES
+# ========================
+.DS_Store
+
+# ========================
+# EDITOR FILES
+# ========================
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
