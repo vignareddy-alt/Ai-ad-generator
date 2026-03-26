@@ -36,8 +36,8 @@ router.post("/generate", async (req, res) => {
 
     // 🔥 3. Overlay logo + CTA
     try {
-      const logo = fs.readFileSync("logo.png");
-      const cta = fs.readFileSync("cta.png");
+      const logo = fs.readFileSync("./logo.png");
+      const cta = fs.readFileSync("./cta.png");
 
       finalImage = await sharp(imageBuffer)
         .composite([
