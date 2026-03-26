@@ -38,7 +38,7 @@ router.post("/generate", async (req, res) => {
     // 🔥 3. Overlay logo + CTA
     try {
       const logoPath = path.join(process.cwd(), "backend", "logo.png");
-      const ctaPath = path.join(process.cwd(), "backend", "cta.png");
+      const ctaPath = path.join(process.cwd(), "backend", "ctabutton.png");
 
       const logo = fs.readFileSync(logoPath);
       const cta = fs.readFileSync(ctaPath);
