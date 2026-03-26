@@ -17,6 +17,9 @@ ${prompt}
         },
         body: JSON.stringify({
           inputs: improvedPrompt,
+          options: {
+            wait_for_model: true,
+          },
           parameters: {
             negative_prompt:
               "blurry, low quality, distorted, bad anatomy, pixelated, watermark, text",
