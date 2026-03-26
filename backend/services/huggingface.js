@@ -8,7 +8,7 @@ ${prompt}
 `;
 
     const response = await fetch(
-      "https://router.huggingface.co/hf-inference/models/runwayml/stable-diffusion-v1-5",
+      "https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0",
       {
         method: "POST",
         headers: {

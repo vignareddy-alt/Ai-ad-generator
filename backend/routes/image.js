@@ -4,6 +4,7 @@ import { generateImage } from "../services/huggingface.js";
 import { generateCopy } from "../services/copy.js";
 import sharp from "sharp";
 import fs from "fs";
+import path from "path";
 
 const router = express.Router();
 
@@ -36,8 +37,11 @@ router.post("/generate", async (req, res) => {
 
     // 🔥 3. Overlay logo + CTA
     try {
-      const logo = fs.readFileSync("./logo.png");
-      const cta = fs.readFileSync("./cta.png");
+      const logoPath = path.join(process.cwd(), "backend", "logo.png");
+      const ctaPath = path.join(process.cwd(), "backend", "cta.png");
+
+      const logo = fs.readFileSync(logoPath);
+      const cta = fs.readFileSync(ctaPath);
 
       finalImage = await sharp(imageBuffer)
         .composite([
