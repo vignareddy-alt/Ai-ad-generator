@@ -19,43 +19,55 @@ router.post("/generate", async (req, res) => {
     const enhancedPrompt = await enhancePrompt(prompt);
     console.log("Enhanced Prompt:", enhancedPrompt);
 
-    // 🔥 2. Run image + copy in parallel
+    // 🔥 2. Generate image + copy
     const [imageBuffer, copy] = await Promise.all([
       generateImage(enhancedPrompt),
       generateCopy(prompt)
     ]);
 
-    // 🔥 3. Initialize final image
+    console.log("Image buffer size:", imageBuffer?.length);
+
+    // ❌ Check if image is valid
+    if (!imageBuffer || imageBuffer.length === 0) {
+      throw new Error("Image not generated");
+    }
+
     let finalImage = imageBuffer;
 
-    // 🔥 4. Add logo and cta overlay (optional)
+    // 🔥 3. Overlay logo + CTA
     try {
-  const logo = fs.readFileSync("logo.png");
-  const cta = fs.readFileSync("cta.png");
+      const logo = fs.readFileSync("logo.png");
+      const cta = fs.readFileSync("cta.png");
 
-  finalImage = await sharp(imageBuffer)
-    .composite([
-      {
-        input: logo,
-        gravity: "southeast"
-      },
-      {
-        input: cta,
-        gravity: "southwest"
-      }
-    ])
-    .png()
-    .toBuffer();
+      finalImage = await sharp(imageBuffer)
+        .composite([
+          {
+            input: logo,
+            gravity: "southeast"
+          },
+          {
+            input: cta,
+            gravity: "southwest"
+          }
+        ])
+        .png()
+        .toBuffer();
 
-} catch (err) {
-  console.log("Overlay skipped");
-}
+      console.log("Overlay applied");
 
+    } catch (err) {
+      console.log("Overlay skipped:", err.message);
+    }
+
+    // 🔥 4. Convert to base64
+    const base64Image = finalImage.toString("base64");
+
+    console.log("Base64 length:", base64Image.length);
 
     // 🔥 5. Send response
     res.json({
       enhancedPrompt,
-      image: finalImage.toString("base64"),
+      image: base64Image,
       copy
     });
 
