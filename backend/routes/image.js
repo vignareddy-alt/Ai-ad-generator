@@ -43,6 +43,9 @@ router.post("/generate", async (req, res) => {
       const logo = fs.readFileSync(logoPath);
       const cta = fs.readFileSync(ctaPath);
 
+       const logoResized = await sharp(logo).resize(100).toBuffer();
+      const ctaResized = await sharp(cta).resize(200).toBuffer();
+
       finalImage = await sharp(imageBuffer)
         .composite([
           {
