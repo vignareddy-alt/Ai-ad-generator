@@ -1,48 +1,108 @@
+/* 🌌 GLOBAL BACKGROUND */
 body {
-  background: linear-gradient(135deg, #0f172a, #1e293b);
+  margin: 0;
   font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top, #1e3a8a, #020617);
   color: white;
 }
 
+/* MAIN CONTAINER */
 .container {
   max-width: 900px;
   margin: auto;
   text-align: center;
-  padding: 20px;
+  padding: 40px 20px;
 }
 
+/* TITLE */
+h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+/* TAGLINE */
+.tagline {
+  color: #cbd5f5;
+  margin-bottom: 30px;
+}
+
+/* FORM CARD */
+.input-box {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+}
+
+/* INPUTS */
 input, select {
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  margin: 5px 0;
   width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: #0f172a;
+  color: white;
 }
 
+/* BUTTON */
 button {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  width: 100%;
+  margin-top: 15px;
+  padding: 14px;
+  border-radius: 12px;
   border: none;
-  padding: 12px;
-  border-radius: 10px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
   color: white;
+  font-size: 16px;
   cursor: pointer;
   transition: 0.3s;
 }
 
 button:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 20px #6366f1;
 }
 
-img {
+/* FEATURES */
+.features {
+  margin-top: 30px;
+  color: #cbd5f5;
+}
+
+/* RESULT SECTION */
+.result {
+  margin-top: 40px;
+}
+
+/* CARD STYLE */
+.card, .image-card {
+  background: rgba(30, 41, 59, 0.7);
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 20px;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+/* IMAGE */
+.image-card img {
   width: 100%;
   max-width: 400px;
-  border-radius: 15px;
-  margin-top: 20px;
+  border-radius: 12px;
+  margin: 15px 0;
 }
 
-.prompt-box, .copy-box {
-  background: #1e293b;
-  padding: 15px;
-  margin-top: 20px;
-  border-radius: 12px;
+/* ACTION BUTTONS */
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* TEXT */
+.card p {
+  color: #cbd5f5;
+  line-height: 1.6;
 }
