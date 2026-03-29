@@ -40,25 +40,38 @@ router.post("/generate", async (req, res) => {
       const logoPath = path.join(process.cwd(), "backend", "logo.png");
       const ctaPath = path.join(process.cwd(), "backend", "ctabutton.png");
 
-      const logo = fs.readFileSync(logoPath);
-      const cta = fs.readFileSync(ctaPath);
+      const logo = fs.readFileSync("logo.png");
+const cta = fs.readFileSync("cta.png");
 
-       const logoResized = await sharp(logo).resize(100).toBuffer();
-      const ctaResized = await sharp(cta).resize(200).toBuffer();
+// 🔥 Resize properly
+const resizedLogo = await sharp(logo)
+  .resize(120) // adjust if needed
+  .png()
+  .toBuffer();
 
-      finalImage = await sharp(imageBuffer)
-        .composite([
-          {
-            input: logo,
-            gravity: "southeast"
-          },
-          {
-            input: cta,
-            gravity: "southwest"
-          }
-        ])
-        .png()
-        .toBuffer();
+const resizedCTA = await sharp(cta)
+  .resize(220) // bigger CTA
+  .png()
+  .toBuffer();
+
+// 🔥 Add spacing from edges
+finalImage = await sharp(imageBuffer)
+  .composite([
+    {
+      input: resizedLogo,
+      gravity: "southeast",
+      top: 20,
+      left: 20
+    },
+    {
+      input: resizedCTA,
+      gravity: "southwest",
+      top: 20,
+      left: 20
+    }
+  ])
+  .png()
+  .toBuffer();
 
       console.log("Overlay applied");
 
