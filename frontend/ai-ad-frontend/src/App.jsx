@@ -7,6 +7,7 @@ function App() {
   const [platform, setPlatform] = useState("Instagram");
   const [tone, setTone] = useState("Professional");
   const [cta, setCta] = useState("Shop Now");
+  const [ratio, setRatio] = useState("square");
 
   const [image, setImage] = useState(null);
   const [enhancedPrompt, setEnhancedPrompt] = useState("");
@@ -30,7 +31,8 @@ function App() {
           audience,
           platform,
           tone,
-          cta
+          cta,
+          ratio
         })
       });
 
@@ -98,6 +100,13 @@ setCopy(data.copy); // 🔥 IMPORTANT
           <option>Inspirational</option>
           <option>Urgent</option>
         </select>
+
+        {/* ✅ ADD HERE */}
+<select value={ratio} onChange={(e) => setRatio(e.target.value)}>
+  <option value="square">Square</option>
+  <option value="portrait">Portrait</option>
+  <option value="landscape">Landscape</option>
+</select>
 
         <input
           type="text"

@@ -68,7 +68,8 @@ finalImage = await sharp(imageBuffer)
       input: resizedCTA,
       gravity: "southwest",
       top: 20,
-      left: 20
+      left: 20,
+      opacity: 1
     }
   ])
   .png()
