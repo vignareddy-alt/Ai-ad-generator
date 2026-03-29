@@ -128,34 +128,42 @@ setCopy(data.copy); // 🔥 IMPORTANT
 
       {/* 🔥 RESULT (STEP 1 IMPROVED) */}
       {image && (
-        <div className="result">
+  <div className="result">
 
-          {/* IMAGE */}
-          <img src={image} alt="Generated" />
+    {/* IMAGE CARD */}
+    <div className="image-card">
+      <h3>🎯 Generated Ad</h3>
 
-          {/* DOWNLOAD */}
-          <div className="actions">
-            <button onClick={downloadImage}>⬇ Download</button>
-          </div>
+      <img src={image} alt="Generated" />
 
-          {/* ENHANCED PROMPT */}
-          <div className="prompt-box">
-            <h3>✨ Enhanced Prompt</h3>
-            <p>{enhancedPrompt}</p>
+      <div className="actions">
+        <button onClick={downloadImage}>⬇ Download</button>
+        <button onClick={() => navigator.clipboard.writeText(copy)}>
+          📋 Copy Caption
+        </button>
+      </div>
+    </div>
 
-           <button onClick={copyPrompt}>
-           📋 Copy Prompt
-          </button>
-          </div>
-          
-          {/* COPYWRITING */}
-        <div className="copy-box">
-          <h3>📢 Caption & Hashtags</h3>
-          <p style={{ whiteSpace: "pre-line" }}>{copy}</p>
-            </div>
+    {/* PROMPT CARD */}
+    <div className="card">
+      <h3>✨ Enhanced Prompt</h3>
+      <p>{enhancedPrompt}</p>
+      <button onClick={copyPrompt}>📋 Copy Prompt</button>
+    </div>
 
-        </div>
-      )}
+    {/* COPY CARD */}
+    <div className="card">
+      <h3>📢 Caption & Hashtags</h3>
+
+      <p style={{ whiteSpace: "pre-line" }}>{copy}</p>
+
+      <button onClick={() => navigator.clipboard.writeText(copy)}>
+        📋 Copy Caption
+      </button>
+    </div>
+
+  </div>
+)}
 
     </div>
   );
