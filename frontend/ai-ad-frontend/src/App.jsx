@@ -112,16 +112,7 @@ setCopy(data.copy); // 🔥 IMPORTANT
 
       </div>
 
-      {/* 🔥 FEATURES */}
-      <div className="features">
-        <h3>✨ Features</h3>
-        <ul>
-          <li>AI Prompt Enhancement (Gemini)</li>
-          <li>Image Generation (Stable Diffusion)</li>
-          <li>Download Generated Ads</li>
-          <li>Copy AI Prompt</li>
-        </ul>
-      </div>
+  
 
       {/* 🔥 LOADING */}
       {loading && <p className="loading">Generating AI Ad...</p>}
