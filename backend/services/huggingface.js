@@ -1,6 +1,19 @@
-export const generateImage = async (prompt) => {
+export const generateImage = async (prompt, ratio = "square") => {
   try {
-    // 🔥 Improve prompt for better quality
+
+    // ✅ Aspect Ratio Logic INSIDE function
+    let width = 1024;
+    let height = 1024;
+
+    if (ratio === "portrait") {
+      width = 768;
+      height = 1024;
+    } else if (ratio === "landscape") {
+      width = 1024;
+      height = 768;
+    }
+
+    // 🔥 Improve prompt quality
     const improvedPrompt = `
 ultra realistic, 4k, high detail, sharp focus, cinematic lighting,
 professional photography, detailed textures,
@@ -21,6 +34,8 @@ ${prompt}
             wait_for_model: true,
           },
           parameters: {
+            width,
+            height,
             negative_prompt:
               "blurry, low quality, distorted, bad anatomy, pixelated, watermark, text",
           }
@@ -30,7 +45,7 @@ ${prompt}
 
     console.log("HF Status:", response.status);
 
-    // 🔥 Handle model loading (very common)
+    // 🔥 Handle model loading retry
     if (!response.ok) {
       const errorText = await response.text();
       console.error("HF ERROR:", errorText);
@@ -38,7 +53,9 @@ ${prompt}
       if (errorText.includes("loading")) {
         console.log("Model loading... retrying in 5s");
         await new Promise((res) => setTimeout(res, 5000));
-        return generateImage(prompt); // retry
+
+        // ✅ FIX: pass ratio again
+        return generateImage(prompt, ratio);
       }
 
       throw new Error("HuggingFace failed");
