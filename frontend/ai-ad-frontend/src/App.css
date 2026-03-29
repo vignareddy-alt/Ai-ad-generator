@@ -1,94 +1,48 @@
 body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: #0f172a;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  font-family: "Poppins", sans-serif;
   color: white;
 }
 
 .container {
+  max-width: 900px;
+  margin: auto;
   text-align: center;
-  padding: 40px;
+  padding: 20px;
 }
 
-h1 {
-  margin-bottom: 20px;
-}
-
-.input-box {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-input {
-  width: 300px;
+input, select {
   padding: 12px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
-  outline: none;
+  margin: 5px 0;
+  width: 100%;
 }
 
 button {
-  padding: 12px 16px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   border: none;
-  border-radius: 8px;
-  background: #6366f1;
+  padding: 12px;
+  border-radius: 10px;
   color: white;
   cursor: pointer;
   transition: 0.3s;
 }
 
 button:hover {
-  background: #4f46e5;
-}
-
-.loading {
-  margin-top: 20px;
-  color: #facc15;
-}
-
-.result {
-  margin-top: 30px;
-}
-.copy-box {
-  background: #1e293b;
-  padding: 15px;
-  margin-top: 20px;
-  border-radius: 10px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  transform: scale(1.05);
 }
 
 img {
-  width: 400px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
-.column {
-  flex-direction: column;
-  gap: 10px;
-}
-select {
-  padding: 10px;
-  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 15px;
+  margin-top: 20px;
 }
 
-.actions {
-  margin-bottom: 20px;
-}
-
-.prompt-box {
+.prompt-box, .copy-box {
   background: #1e293b;
   padding: 15px;
-  border-radius: 10px;
-  text-align: left;
-  max-width: 600px;
-  margin: auto;
-}
-
-.prompt-box p {
-  font-size: 14px;
-  line-height: 1.5;
+  margin-top: 20px;
+  border-radius: 12px;
 }
