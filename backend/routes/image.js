@@ -60,15 +60,15 @@ finalImage = await sharp(imageBuffer)
     {
       input: resizedLogo,
       gravity: "southeast",
-      top: 20,
-      left: 20,
+      // top: 20,
+      // left: 20,
       opacity: 0.8 // slight transparency
     },
     {
       input: resizedCTA,
       gravity: "southwest",
-      top: 20,
-      left: 20,
+      // top: 20,
+      // left: 20,
       opacity: 1
     }
   ])
